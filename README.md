@@ -1,4 +1,22 @@
-<div align="center">
+# Galavant
+
+# Development Installation
+
+i think `code go here` is better than `code go there`
+
+- clone this repo:  `git clone https://github.com/imandel/GalavantDesktop.git`
+
+- `cd GalavantDesktop`
+- `npm install`
+- to launch run: `npm run electron-dev`
+
+
+### bye
+
+*asj* __fdas__ 
+
+
+<!-- <div align="center">
 <img alt="Electron Svelte Crossover Banner" src="https://raw.githubusercontent.com/soulehshaikh99/assets/master/create-electron-framework-app/readme/svg/Electron_Svelte.svg" width="580" />
 </div>
 <br />
@@ -317,4 +335,4 @@ $ yarn electron-pack # or npm run electron-pack
 <br/>
 
 <h3>📋 License: </h3>
-Licensed under the <a href="https://github.com/soulehshaikh99/create-svelte-electron-app/blob/master/LICENSE">MIT License</a>.
+Licensed under the <a href="https://github.com/soulehshaikh99/create-svelte-electron-app/blob/master/LICENSE">MIT License</a>. -->
