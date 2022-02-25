@@ -1,4 +1,11 @@
 <script>
+
+    // Selected files
+    let files = 0;
+    let src;
+    $: poster = src + "#t=10";
+    $: file_name = files ? files[0].name.split('.')[0] : 0;
+
 	// These values are bound to properties of the video
 	let time = 0;
 	let duration;
@@ -47,15 +54,26 @@
 
 		return `${minutes}:${seconds}`;
 	}
+
+    function loadFile(e) {
+		src = URL.createObjectURL(e.target.files[0]);
+	}
 </script>
 
-<h1>Video Testing</h1>
-<p>Multi-modal video analysis toolkit</p>
+<h1>Multi-modal video analysis toolkit</h1>
+
+<input on:change={loadFile} type = "file" accept="video/*" bind:files>
+
+{#if files && files[0]}
+	<p>
+		Showing the video of { file_name }
+	</p>
+{/if}
 
 <div>
 	<video
-		poster="https://sveltejs.github.io/assets/caminandes-llamigos.jpg"
-		src="https://sveltejs.github.io/assets/caminandes-llamigos.mp4"
+        preload='auto'
+		{src}
 		on:mousemove={handleMove}
 		on:touchmove|preventDefault={handleMove}
 		on:mousedown={handleMousedown}
@@ -68,12 +86,13 @@
 
 	<div class="controls" style="opacity: {duration && showControls ? 1 : 0}">
 		<progress value="{(time / duration) || 0}"/>
-
 		<div class="info">
 			<span class="time">{format(time)}</span>
+            <span>{file_name}</span>
 			<span>click anywhere to {paused ? 'play' : 'pause'} / drag to seek</span>
 			<span class="time">{format(duration)}</span>
 		</div>
+
 	</div>
 </div>
 
