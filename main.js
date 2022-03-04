@@ -30,10 +30,9 @@ function createWindow() {
     // This block of code is intended for development purpose only.
     // Delete this entire block of code when you are ready to package the application.
     if (isDev()) {
-        // console.log("Debugging!");
-        mainWindow.loadURL('http://127.0.0.1:5000/');
+        console.log("Debugging!")
+        mainWindow.loadURL('http://localhost:8080/');
     } else {
-        // console.log("What happened?");
         loadURL(mainWindow);
     }
     
@@ -78,8 +77,3 @@ app.on('activate', function () {
 });
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-app.on('certificate-error', function(event, callback) {
-        event.preventDefault();
-        callback(true);
-  });
