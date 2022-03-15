@@ -25,7 +25,9 @@
     "electron-pack": "electron-builder"
   },
   "dependencies": {
-    "electron-serve": "^1.1.0"
+    "electron-serve": "^1.1.0",
+    "svelte-video-player": "^1.2.5",
+    "timingsrc": "^1.1.26"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",

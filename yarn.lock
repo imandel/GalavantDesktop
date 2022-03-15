@@ -23,6 +23,13 @@
     "chalk" "^2.0.0"
     "js-tokens" "^4.0.0"
 
+"@babel/runtime@^7.17.2":
+  "integrity" "sha512-L6rvG9GDxaLgFjg41K+5Yv9OMrU98sWe+Ykmc6FDJW/+vYZMhdOMKkISgzptMaERHvS2Y2lw9MDRm2gHhlQQoA=="
+  "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.17.7.tgz"
+  "version" "7.17.7"
+  dependencies:
+    "regenerator-runtime" "^0.13.4"
+
 "@develar/schema-utils@~2.6.5":
   "integrity" "sha512-0cp4PsWQ/9avqTVMCtZ+GirikIA36ikvjtHweU4/j8yLtgObI0+JUPhYFScgwlteveGB1rt3Cm8UhN04XayDig=="
   "resolved" "https://registry.npmjs.org/@develar/schema-utils/-/schema-utils-2.6.5.tgz"
@@ -1893,6 +1900,11 @@
   dependencies:
     "picomatch" "^2.2.1"
 
+"regenerator-runtime@^0.13.4":
+  "integrity" "sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA=="
+  "resolved" "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz"
+  "version" "0.13.9"
+
 "registry-auth-token@^4.0.0":
   "integrity" "sha512-6gkSb4U6aWJB4SF2ZvLb76yCBjcvufXBqvvEx1HbmKPkutswjW1xNVRY0+daljIYRbogN7O0etYSlbiaEQyMyw=="
   "resolved" "https://registry.npmjs.org/registry-auth-token/-/registry-auth-token-4.2.1.tgz"
@@ -1996,6 +2008,11 @@
   "version" "2.68.0"
   optionalDependencies:
     "fsevents" "~2.3.2"
+
+"rxjs-interop@^2.0.0":
+  "integrity" "sha512-ASEq9atUw7lualXB+knvgtvwkCEvGWV2gDD/8qnASzBkzEARZck9JAyxmY8OS6Nc1pCPEgDTKNcx+YqqYfzArw=="
+  "resolved" "https://registry.npmjs.org/rxjs-interop/-/rxjs-interop-2.0.0.tgz"
+  "version" "2.0.0"
 
 "rxjs@^6.6.3":
   "integrity" "sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ=="
@@ -2217,6 +2234,15 @@
   "resolved" "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-2.0.1.tgz"
   "version" "2.0.1"
 
+"subscribable-things@^2.1.0":
+  "integrity" "sha512-pfNES7cApKP7X8oJmkhQKyLS0kdEK4opDgQPMxX2bEDBSu4RiwvNom2F0zzypDUK3rjPPWJIe68ecyDzMn5c6A=="
+  "resolved" "https://registry.npmjs.org/subscribable-things/-/subscribable-things-2.1.0.tgz"
+  "version" "2.1.0"
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    "rxjs-interop" "^2.0.0"
+    "tslib" "^2.3.1"
+
 "sumchecker@^3.0.1":
   "integrity" "sha512-MvjXzkz/BOfyVDkG0oFOtBxHX2u3gKbMHIF/dXblZsgD3BWOFLmHovIpZY7BykJdAjcqRCBi1WYBNdEC9yI7vg=="
   "resolved" "https://registry.npmjs.org/sumchecker/-/sumchecker-3.0.1.tgz"
@@ -2252,6 +2278,11 @@
   dependencies:
     "has-flag" "^4.0.0"
 
+"svelte-video-player@^1.2.5":
+  "integrity" "sha512-iImQY6qnEEE0fngq9aANKMKDD2knTBcsyTLKHc3hyZ/nj/ZExwBAJ7MbxlOnyLpSKzZA1KaSSaqKXeTRWZOOlw=="
+  "resolved" "https://registry.npmjs.org/svelte-video-player/-/svelte-video-player-1.2.5.tgz"
+  "version" "1.2.5"
+
 "svelte@^3.42.1", "svelte@>=3.5.0":
   "integrity" "sha512-qKJzw6DpA33CIa+C/rGp4AUdSfii0DOTCzj/2YpSKKayw5WGSS624Et9L1nU1k2OVRS9vaENQXp2CVZNU+xvIg=="
   "resolved" "https://registry.npmjs.org/svelte/-/svelte-3.46.4.tgz"
@@ -2273,6 +2304,24 @@
     "commander" "^2.20.0"
     "source-map" "~0.7.2"
     "source-map-support" "~0.5.19"
+
+"timing-object@^3.1.43":
+  "integrity" "sha512-nl9RPQ+ygwRq0+mK9RqVdJZqVIau1hTrF2QhnEZKkdISKp7Bgjcf5Vold8Ozpl262xFmBOxA+ga/NijLE1Wh7w=="
+  "resolved" "https://registry.npmjs.org/timing-object/-/timing-object-3.1.43.tgz"
+  "version" "3.1.43"
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    "tslib" "^2.3.1"
+
+"timingsrc@^1.1.26":
+  "integrity" "sha512-Xp9I2e6mi96d4qv25GIOc96YpEuQUz3LDJvRT6pX8zwve+bOyIVWn/vbqBhXZL6r6xbYpbxFHbF6nt4ZYXXxmg=="
+  "resolved" "https://registry.npmjs.org/timingsrc/-/timingsrc-1.1.26.tgz"
+  "version" "1.1.26"
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    "subscribable-things" "^2.1.0"
+    "timing-object" "^3.1.43"
+    "tslib" "^2.3.1"
 
 "tinydate@^1.0.0":
   "integrity" "sha512-7cR8rLy2QhYHpsBDBVYnnWXm8uRTr38RoZakFSW7Bs7PzfMPNZthuMLkwqZv7MTu8lhQ91cOFYS5a7iFj2oR3w=="
@@ -2328,6 +2377,11 @@
   "version" "1.14.1"
 
 "tslib@^2.1.0":
+  "integrity" "sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw=="
+  "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
+  "version" "2.3.1"
+
+"tslib@^2.3.1":
   "integrity" "sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
   "version" "2.3.1"
