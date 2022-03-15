@@ -5,6 +5,8 @@
     // Selected files
     let files = 0;
 	let currentTime = 0;
+	let paused = true;
+	let start_time = 0;
     // let source = "";
 	// let currentTime = writable(0);
     $: file_name = files ? files[0].name.split('.')[0] : 0;
@@ -16,7 +18,8 @@
 	import { setTimingsrc } from 'timingsrc';
 
 	function synchronization(){
-		const mediaElement = document.getElementsByTagName('video')[0];
+		const mediaElement = document.getElementsByTagName('video');
+		console.log(mediaElement)
 		const timingObject = new TimingObject();
 
 		const deleteTimingsrc = setTimingsrc(mediaElement, timingObject);
@@ -24,18 +27,12 @@
 		// The synchronization can be stopped again at any point in time.
 		deleteTimingsrc();
 	}
-	
-
-    // function loadFile(e) {
-	// 	// src = e.target.files[0].name;
-	// 	source = URL.createObjectURL(e.target.files[0]);
-	// }
 </script>
 
 <div class = "topbar">
 	<h1>Multi-modal video analysis toolkit</h1>
 	<input type = "file" accept="video/*"  bind:files>
-	<button on:click={synchronization}></button>
+	<button on:click={synchronization}>synchronization</button>
 	{#if files && files[0]}
 		<p>
 			Showing the video of { file_name }
@@ -45,8 +42,8 @@
 </div>
 
 <div class="wrapper">
-	<VideoPlayer {source} bind:currentTime = {currentTime}/>
-	<VideoPlayer {source} bind:currentTime = {currentTime}/>
+	<VideoPlayer {source}  bind:paused = {paused} bind:start_time = {start_time}/>
+	<VideoPlayer {source}  bind:paused = {paused} bind:start_time = {start_time}/>
 </div>
 
 

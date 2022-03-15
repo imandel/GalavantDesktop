@@ -56,8 +56,7 @@
   export let controlsOnPause;
   export let timeDisplay;
 
-  // most important thing: time scr
-  export let currentTime;
+  
 
   $: _sources = prepareVideoSources(source);
   $: _skipSeconds = parseFloat(skipSeconds);
@@ -97,7 +96,11 @@
   let played = []; // [{start, end}]
   let seeking;
   let ended;
-  let paused = true;
+  export let paused = true;
+  export let start_time = 0;
+  // most important thing: time scr
+  export let currentTime;
+  $: {currentTime = start_time};
   let volume = 1;
   let muteVolume = 1;
 
@@ -218,6 +221,7 @@
     const d = videoElement.duration;
     if (back) videoElement.currentTime = t > _skipSeconds ? t - _skipSeconds : 0;
     else videoElement.currentTime = t + _skipSeconds < d ? t + _skipSeconds : d - 0.2;
+    start_time = videoElement.currentTime;
   }
 
   //-------------------------------------------------------------------------------------------------------------------

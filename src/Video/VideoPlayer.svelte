@@ -27,8 +27,11 @@
   export let loop = false;
   export let skipSeconds = 5;
   export let controlsOnPause = true;
-  export let timeDisplay = false;
+  export let timeDisplay = true;
   export let currentTime = 0;
+
+  export let paused = true;
+  export let start_time = 0;
 
   $: _width = parseInt(width);
   $: _height = parseInt(height);
@@ -57,4 +60,6 @@
     {aspectRatio}
     {controlsOnPause}
     {timeDisplay} 
-    bind:currentTime = {currentTime}/>
+    bind:paused = {paused}
+    bind:currentTime = {currentTime}
+    bind:start_time = {start_time}/>
