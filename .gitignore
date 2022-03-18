@@ -15,6 +15,9 @@ jspm_packages/
 # Svelte Distribution
 public/build/
 
+# don't upload large videos
+videos/
+
 # Electron Distribution
 dist
 
