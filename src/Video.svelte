@@ -44,6 +44,10 @@
 <div class="wrapper">
 	<VideoPlayer {source}  bind:paused = {paused} bind:start_time = {start_time}/>
 	<VideoPlayer {source}  bind:paused = {paused} bind:start_time = {start_time}/>
+	<VideoPlayer {source}  bind:paused = {paused} bind:start_time = {start_time}/>
+	<VideoPlayer {source}  bind:paused = {paused} bind:start_time = {start_time}/>
+	<VideoPlayer {source}  bind:paused = {paused} bind:start_time = {start_time}/>
+	<VideoPlayer {source}  bind:paused = {paused} bind:start_time = {start_time}/>
 </div>
 
 
@@ -51,7 +55,7 @@
 
 	.wrapper{
 		display:grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 		grid-gap: 1em;
 	}
 
