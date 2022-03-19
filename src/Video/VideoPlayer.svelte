@@ -33,6 +33,9 @@
   export let paused = true;
   export let start_time = 0;
 
+  export let video_id = 0;
+  export let videoElement = 0;
+
   $: _width = parseInt(width);
   $: _height = parseInt(height);
   $: aspectRatio = _height / _width;
@@ -62,4 +65,9 @@
     {timeDisplay} 
     bind:paused = {paused}
     bind:currentTime = {currentTime}
-    bind:start_time = {start_time}/>
+    bind:start_time = {start_time}
+    bind:videoElement = {videoElement}
+    {video_id}/>
+
+
+    
