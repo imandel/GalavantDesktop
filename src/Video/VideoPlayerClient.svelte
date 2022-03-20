@@ -9,8 +9,6 @@
 </script>
 
 <script>
-  import { setContext } from "svelte";
-  import { writable } from "svelte/store";
   import { uid, preloadImage, prepareVideoSources } from "./utils.js";
 
   import Poster from "./Poster.svelte";
@@ -36,17 +34,8 @@
   export let height;
   export let poster;
   export let source;
-  export let controlsHeight;
-  export let trackHeight;
-  export let thumbSize;
-  export let centerIconSize;
   export let playerBgColor;
-  export let color;
-  export let focusColor;
-  export let barsBgColor;
   export let iconColor;
-  export let bufferedColor;
-  export let chunkBars;
   export let borderRadius;
   export let loop;
   export let skipSeconds;
@@ -59,28 +48,6 @@
   $: _sources = prepareVideoSources(source);
   $: _skipSeconds = parseFloat(skipSeconds);
 
-  //-------------------------------------------------------------------------------------------------------------------
-  // REACTIVE CONFIG CONTEXT
-  //-------------------------------------------------------------------------------------------------------------------
-
-  const config = writable({});
-  setContext("config", config);
-
-  $: $config.controlsHeight = controlsHeight;
-  $: $config.thumbSize = thumbSize;
-  $: $config.trackHeight = trackHeight;
-  $: $config.centerIconSize = centerIconSize;
-  $: $config.color = color;
-  $: $config.playerBgColor = playerBgColor;
-  $: $config.focusColor = focusColor;
-  $: $config.barsBgColor = barsBgColor;
-  $: $config.iconColor = iconColor;
-  $: $config.bufferedColor = bufferedColor;
-  $: $config.chunkBars = chunkBars;
-  $: $config.loop = loop;
-  $: $config.borderRadius = borderRadius;
-  $: $config.controlsOnPause = controlsOnPause;
-  $: $config.timeDisplay = timeDisplay;
 
   //-------------------------------------------------------------------------------------------------------------------
   // VIDEO ELEMENT BINDINGS

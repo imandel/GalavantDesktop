@@ -12,17 +12,8 @@
   export let height = 1080;
   export let poster = '';
   export let source = '';
-  export let controlsHeight = '55px';
-  export let trackHeight = '6px';
-  export let thumbSize = '15px';
-  export let centerIconSize = '60px';
   export let playerBgColor = 'black';
-  export let color = '#FF3E00';
-  export let focusColor = 'white';
-  export let barsBgColor = 'white';
   export let iconColor = 'white';
-  export let bufferedColor = '#FF9600';
-  export let chunkBars = false;
   export let borderRadius = '8px';
   export let loop = false;
   export let skipSeconds = 5;
@@ -46,17 +37,8 @@
     {height}
     {poster}
     {source}
-    {controlsHeight}
-    {trackHeight}
-    {thumbSize}
-    {centerIconSize}
     {playerBgColor}
-    {color}
-    {focusColor}
-    {barsBgColor}
     {iconColor}
-    {bufferedColor}
-    {chunkBars}
     {borderRadius}
     {loop}
     {skipSeconds}
