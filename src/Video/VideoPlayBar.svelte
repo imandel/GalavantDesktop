@@ -1,5 +1,4 @@
 <script>
-  import CenterIcons from "./CenterIcons.svelte";
   import BottomControls from "./BottomControls.svelte";
   import Playbar from "./Playbar.svelte";
   import PlayPauseButton from "./PlayPauseButton.svelte";
@@ -7,9 +6,6 @@
   import VolumeControl from "./VolumeControl.svelte";
   import FullscreenButton from "./FullscreenButton.svelte";
   import Time from "./Time.svelte";
-
-  import { setContext } from "svelte";
-  import { writable } from "svelte/store";
 
 
   //-------------------------------------------------------------------------------------------------------------------
@@ -25,15 +21,10 @@
   let duration;
   let buffered = []; // [{start, end}]
   let played = []; // [{start, end}]
-  let seeking;
 
-  let isVideoData = false;
-  let isPointerOverVideo = false;
   let isPointerOverControls = false;
-  let isBuffering = false;
   let isFullscreenEnabled = false;
   let isFullscreen = false;
-  let isIdle = false;
   let isScrubbing = false;
 
   let volume = 1;
@@ -41,12 +32,7 @@
   $: muted = volume == 0;
 
   let isPlayBar = true;
-
-  $: isBottomControlsVisible = true;
-
-  $: isSpinnerVisible = seeking || isBuffering;
-
-  $: isCenterIconVisibile = !isVideoData || (paused && !isScrubbing);
+  let isBottomControlsVisible = true;
 
 
   function onPlayPauseButtonPointerUp(e) {
@@ -70,15 +56,11 @@
   function onFullscreenButtonPointerUp(e) {
     isFullscreen = !isFullscreen;
   }
-  
-  function togglePause() {
-    paused = !paused;
-  }
 
 </script>
 
 
-<div>
+<div class="videoplaybar">
     <BottomControls
           hidden={!isBottomControlsVisible}
           bind:isPointerOver={isPointerOverControls}

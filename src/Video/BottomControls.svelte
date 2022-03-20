@@ -5,15 +5,16 @@
   export let isPointerOver;
   export let isPlayBar = false;
 
-  let classname = "controls"; 
-  if(isPlayBar){
-    classname = "controls2";
-  }
-
   const cfg = getContext("config");
-
   let lastFocusElement;
   let wasTabDown;
+  let style = "height:"+ $cfg.controlsHeight +"; background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.2) 80%);";
+  let classname = "controls"; 
+  
+  if(isPlayBar){
+    classname = "controls2";
+    style = "height:"+ $cfg.controlsHeight;
+  }
 
   function onPointerOver(e) {
     isPointerOver = true;
@@ -77,7 +78,7 @@
 <div
   class:hidden
   class={classname}
-  style="height:{$cfg.controlsHeight}; background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.2) 80%);"
+  style={style}
   on:pointerover={onPointerOver}
   on:pointerout={onPointerOut}
   on:transitionend={onTransitionEnd}>

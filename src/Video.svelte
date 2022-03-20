@@ -5,7 +5,7 @@
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
 
-  // varibles
+  // Section1 : varibles to control videos
   let files;
   let paused = true;
   let reset = false;
@@ -39,6 +39,9 @@
   //-------------------------------------------------------------------------------------------------------------------
   // REACTIVE CONFIG CONTEXT
   //-------------------------------------------------------------------------------------------------------------------
+
+  // Section2 : styles
+  // These changes will change the styles of all videos
 
   const config = writable({});
   setContext("config", config);
@@ -80,37 +83,41 @@
 <div class="topbar">
   <h1>Multi-modal video analysis toolkit</h1>
   <input type="file" accept="video/*" bind:files />
-  {#if files && files[0]}
-    <p>
-      Showing the video of {file_name}
-      {source}
-    </p>
-  {/if}
 </div>
 
 <div>
+  <button on:click={() => paused = !paused}> </button>
   <button on:click={() => (paused = true)}>pause</button>
   <button on:click={() => (paused = false)}>play</button>
   <button on:click={() => (reset = true)}> reset</button>
 </div>
 
-<VideoPlayBar />
 
-<div class="wrapper">
-    <VideoPlayer {source}  />
-    <VideoPlayer {source}  />
-    <VideoPlayer {source}  />
 
-  <VideoPlayer {source}  />
-  <VideoPlayer {source}  />
-  <VideoPlayer {source}  />
+<div class="videos">
+  <div class="videos layout1">
+    <VideoPlayer {source}  />
+    <VideoPlayer {source}  />
+    <VideoPlayer {source}  />
+  </div>
+  <div class="videos layout2">
+    <VideoPlayer {source}  />
+    <VideoPlayer {source}  />
+  </div>
 </div>
 
+<VideoPlayBar />
+
 <style>
-  .wrapper {
+  .videos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
+  }
+  .layout1{
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .layout2{
+    grid-template-columns: repeat(2, 1fr);
   }
 
 </style>

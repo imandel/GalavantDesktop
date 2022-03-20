@@ -226,27 +226,11 @@
   // TODO: timing src
   import { timingObject } from "../time";
   import { setTimingsrc } from "timingsrc";
-
-  //   $: currentTime1Span = document.getElementById("current-time-1");
-  //   $: currentTime2Span = document.getElementById("current-time-2");
-  //   $: pauseButton = document.getElementById("pause");
-  //   $: playButton = document.getElementById("play");
-  //   $: player1 = document.getElementById("video1");
-  //   $: player2 = document.getElementById("video2");
-  //   $: positionSpan = document.getElementById("position");
-  //   $: resetButton = document.getElementById("reset");
-  //   $: skipBackwardButton = document.getElementById("skip-backward");
-  //   $: skipForwardButton = document.getElementById("skip-forward");
   let timing;
   timingObject.subscribe((value) => {
     timing = value;
   });
-
-  $: timing, source && update_time();
-
-  function update_time(){
-    setTimingsrc(videoElement, timing);
-  }
+  $: timing, source && setTimingsrc(videoElement, timing);
 </script>
 
 <svelte:window on:keydown={onWindowKeyDown} on:keyup={onWindowKeyUp} />
