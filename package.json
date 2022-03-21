@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "electron-serve": "^1.1.0",
+    "subtitles-parser-vtt": "^0.1.0",
     "svelte-video-player": "^1.2.5",
     "timing-provider": "^5.0.16",
     "timingsrc": "^1.1.26"

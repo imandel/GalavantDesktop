@@ -3110,6 +3110,11 @@
     "rxjs-interop" "^2.0.0"
     "tslib" "^2.3.1"
 
+"subtitles-parser-vtt@^0.1.0":
+  "integrity" "sha512-+y3GOvLL+71JLMFFjqSi4p0J9ddSbhpXKaWG6vHUT8PqPZmlhyAsfu0LP248FdVGfwNIj77wIgVkfQ2xwCZ4+Q=="
+  "resolved" "https://registry.npmjs.org/subtitles-parser-vtt/-/subtitles-parser-vtt-0.1.0.tgz"
+  "version" "0.1.0"
+
 "sumchecker@^3.0.1":
   "integrity" "sha512-MvjXzkz/BOfyVDkG0oFOtBxHX2u3gKbMHIF/dXblZsgD3BWOFLmHovIpZY7BykJdAjcqRCBi1WYBNdEC9yI7vg=="
   "resolved" "https://registry.npmjs.org/sumchecker/-/sumchecker-3.0.1.tgz"

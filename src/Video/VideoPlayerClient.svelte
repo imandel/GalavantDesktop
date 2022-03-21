@@ -42,12 +42,11 @@
   export let controlsOnPause;
   export let timeDisplay;
   export let video_id;
-  export let tracksrc;
+  export let title;
   let videoElement;
 
   $: _sources = prepareVideoSources(source);
   $: _skipSeconds = parseFloat(skipSeconds);
-
 
   //-------------------------------------------------------------------------------------------------------------------
   // VIDEO ELEMENT BINDINGS
@@ -307,10 +306,12 @@
           on:waiting={onVideoWaiting}
           preload="none"
         >
-          <track default kind="captions" srclang="en" src={tracksrc}/>
+          
           {#each _sources as { src, type }}
             <source {src} {type} />
           {/each}
+          <track kind="captions" />
+          <track kind="subtitles" srclang="en" src={title} default>
           <p>Sorry, your browser doesn't support HTML5 videos.</p>
         </video>
       {/if}

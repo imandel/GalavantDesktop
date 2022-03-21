@@ -22,8 +22,8 @@
   export let video_id = 0;
   export let files = "";
   export let tracksrc = "";
+  export let title = "";
 
-  // $: tracksrc = files ? files[0].name.replace( /\.[^/.]+$/ , "") + ".transcript.vtt" : "";
   $: source = files ? URL.createObjectURL(files[0]) : "";
   $: _width = parseInt(width);
   $: _height = parseInt(height);
@@ -45,7 +45,7 @@
     {controlsOnPause}
     {timeDisplay} 
     {video_id}
-    {tracksrc}
+    {title}
     />
 
 {:else}

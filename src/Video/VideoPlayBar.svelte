@@ -5,6 +5,7 @@
   import VolumeButton from "./VolumeButton.svelte";
   import VolumeControl from "./VolumeControl.svelte";
   import Time from "./Time.svelte";
+  import Subtitle from "./Subtitle.svelte";
   import { timingObject} from "../time";
 
   //-------------------------------------------------------------------------------------------------------------------
@@ -16,6 +17,7 @@
   export let timeDisplay = true;
   export let duration = 0;
   export let startTime = 0;
+  export let title = "";
   
 
   let buffered = []; // [{start, end}]
@@ -29,6 +31,7 @@
   $: muted = volume == 0;
   let isPlayBar = true;
   let isBottomControlsVisible = true;
+
 
   // Section Timer: To create a false current timer!
   // It's not actuall current time, but a fake one.
@@ -89,7 +92,7 @@
   }
 </script>
 
-<div class="videoplaybar">
+<div>
   <BottomControls
     hidden={!isBottomControlsVisible}
     bind:isPointerOver={isPointerOverControls}
@@ -111,5 +114,6 @@
     {/if}
     <VolumeButton on:pointerup={onVolumeButtonPointerUp} {muted} />
     <VolumeControl bind:volume />
+    <Subtitle bind:title />
   </BottomControls>
 </div>
