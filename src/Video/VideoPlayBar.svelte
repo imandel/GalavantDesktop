@@ -4,27 +4,21 @@
   import PlayPauseButton from "./PlayPauseButton.svelte";
   import VolumeButton from "./VolumeButton.svelte";
   import VolumeControl from "./VolumeControl.svelte";
-  import FullscreenButton from "./FullscreenButton.svelte";
   import Time from "./Time.svelte";
-
 
   //-------------------------------------------------------------------------------------------------------------------
   // APP STATE FLAGS
   //-------------------------------------------------------------------------------------------------------------------
 
   export let paused = true;
-
   export let currentTime = 0;
   export let timeDisplay = true;
-  
+  export let duration = 0;
 
-  let duration;
   let buffered = []; // [{start, end}]
   let played = []; // [{start, end}]
 
   let isPointerOverControls = false;
-  let isFullscreenEnabled = false;
-  let isFullscreen = false;
   let isScrubbing = false;
 
   let volume = 1;
@@ -33,7 +27,6 @@
 
   let isPlayBar = true;
   let isBottomControlsVisible = true;
-
 
   function onPlayPauseButtonPointerUp(e) {
     paused = !paused;
@@ -52,41 +45,29 @@
       muteVolume = 1;
     }
   }
-
-  function onFullscreenButtonPointerUp(e) {
-    isFullscreen = !isFullscreen;
-  }
-
 </script>
 
-
 <div class="videoplaybar">
-    <BottomControls
-          hidden={!isBottomControlsVisible}
-          bind:isPointerOver={isPointerOverControls}
-          {isPlayBar}
-        >
-          <PlayPauseButton on:pointerup={onPlayPauseButtonPointerUp} {paused} />
-          <Playbar
-            {duration}
-            {buffered}
-            {played}
-            {isBottomControlsVisible}
-            bind:currentTime
-            bind:paused
-            bind:isScrubbing
-            on:pointerup={onPlaybarPointerUp}
-          />
-          {#if timeDisplay}
-            <Time {duration} {currentTime} />
-          {/if}
-          <VolumeButton on:pointerup={onVolumeButtonPointerUp} {muted} />
-          <VolumeControl bind:volume />
-          {#if isFullscreenEnabled}
-            <FullscreenButton
-              on:pointerup={onFullscreenButtonPointerUp}
-              {isFullscreen}
-            />
-          {/if}
-        </BottomControls>
+  <BottomControls
+    hidden={!isBottomControlsVisible}
+    bind:isPointerOver={isPointerOverControls}
+    {isPlayBar}
+  >
+    <PlayPauseButton on:pointerup={onPlayPauseButtonPointerUp} {paused} />
+    <Playbar
+      {duration}
+      {buffered}
+      {played}
+      {isBottomControlsVisible}
+      bind:currentTime
+      bind:paused
+      bind:isScrubbing
+      on:pointerup={onPlaybarPointerUp}
+    />
+    {#if timeDisplay}
+      <Time {duration} {currentTime} />
+    {/if}
+    <VolumeButton on:pointerup={onVolumeButtonPointerUp} {muted} />
+    <VolumeControl bind:volume />
+  </BottomControls>
 </div>

@@ -55,13 +55,10 @@
     box-sizing: border-box;
     min-height: 40px;
     max-height: 150px;
-    top: 100%;
-    /* transform: translateY(-100%); */
     padding: 10px;
     display: flex;
     gap: 6px;
     visibility: visible;
-    /* transition: transform 0.5s ease, visibility 0.5s linear; */
   }
 
 

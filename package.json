@@ -16,9 +16,12 @@
     "mac": {}
   },
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --no-clear",
+    "watch:tailwind": "postcss public/tailwind.css -o public/index.css -w",
+    "build:tailwind": "cross-env NODE_ENV=production postcss public/tailwind.css -o public/index.css",
+    "build": "npm run build:tailwind && rollup -c",
+    "start": "sirv public",
+    "serve": "serve public -p 80",
+    "dev": "concurrently \"rollup -c -w\" \"npm run watch:tailwind\"",
     "electron": "wait-on http://127.0.0.1:5000 && electron .",
     "electron-dev": "concurrently \"npm run dev\" \"npm run electron\"",
     "preelectron-pack": "npm run build",
@@ -33,9 +36,13 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
-    "concurrently": "^6.2.1",
+    "autoprefixer": "^9.8.8",
+    "concurrently": "^6.5.1",
+    "cross-env": "^7.0.3",
     "electron": "^13.1.9",
     "electron-builder": "^22.11.7",
+    "postcss": "^8.4.12",
+    "postcss-cli": "^7.1.2",
     "rollup": "^2.56.2",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.5",
@@ -43,6 +50,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "sirv-cli": "^1.0.12",
     "svelte": "^3.42.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "wait-on": "^6.0.0"
   }
 }

@@ -10,7 +10,6 @@
 
 <script>
   import { uid, preloadImage, prepareVideoSources } from "./utils.js";
-
   import Poster from "./Poster.svelte";
   import Controls from "./Controls.svelte";
   import CenterIcons from "./CenterIcons.svelte";
@@ -43,7 +42,7 @@
   export let controlsOnPause;
   export let timeDisplay;
   export let video_id;
-  export let videoElement;
+  let videoElement;
 
   $: _sources = prepareVideoSources(source);
   $: _skipSeconds = parseFloat(skipSeconds);
@@ -54,23 +53,15 @@
   //-------------------------------------------------------------------------------------------------------------------
 
   let videoPlayerElement;
-
-  // let currentTime = 0;
   let duration;
   let buffered = []; // [{start, end}]
   let played = []; // [{start, end}]
   let seeking;
   let ended;
-  export let paused = true;
-  export let start_time = 0;
-  // most important thing: time scr
-  export let currentTime = 0;
-  $: {
-    currentTime = start_time;
-  }
+  let paused = true;
+  let currentTime = 0;
   let volume = 1;
   let muteVolume = 1;
-
   $: muted = volume == 0;
 
   $: {
@@ -79,6 +70,7 @@
       if (loop) videoElement.play();
     }
   }
+
 
   //-------------------------------------------------------------------------------------------------------------------
   // APP STATE FLAGS
@@ -185,14 +177,14 @@
   }
 
   function timeJump(back) {
-    const t = videoElement.currentTime;
+    let t = 0;
     const d = videoElement.duration;
+    const { position } = timing.query();
     if (back)
-      videoElement.currentTime = t > _skipSeconds ? t - _skipSeconds : 0;
+      t = position > _skipSeconds ? position - _skipSeconds : 0;
     else
-      videoElement.currentTime =
-        t + _skipSeconds < d ? t + _skipSeconds : d - 0.2;
-    start_time = videoElement.currentTime;
+      t = position + _skipSeconds < d ? position + _skipSeconds : d - 0.2;
+    timing.update({position: t});
   }
 
   //-------------------------------------------------------------------------------------------------------------------
@@ -207,6 +199,7 @@
 
   function onPlayPauseButtonPointerUp(e) {
     paused = !paused;
+    
   }
 
   function onVolumeButtonPointerUp(e) {
@@ -224,13 +217,44 @@
   }
 
   // TODO: timing src
-  import { timingObject } from "../time";
+  import { timingObject, Videos } from "../time";
   import { setTimingsrc } from "timingsrc";
   let timing;
   timingObject.subscribe((value) => {
     timing = value;
   });
-  $: timing, source && setTimingsrc(videoElement, timing);
+
+  $: timing, source && videoElement && update_time();
+
+
+  $: paused, update_paused();
+
+  function update_paused(){
+    if(paused){
+        timing.update({ velocity: 0 });
+      }
+      else{
+        timing.update({ velocity: 1 });
+      }
+      timingObject.set(timing);
+  }
+  function update_time(){
+    setTimingsrc(videoElement, timing);
+  }
+
+  // TODO: Update videos
+  let videos;
+  Videos.subscribe((value) =>{
+    videos = value;
+  });
+  function update_video(){
+    videos[source] = duration;
+    Videos.set(videos);
+  }
+  $: source, duration && update_video();
+
+
+
 </script>
 
 <svelte:window on:keydown={onWindowKeyDown} on:keyup={onWindowKeyUp} />

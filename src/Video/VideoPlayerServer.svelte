@@ -2,6 +2,7 @@
   export let playerBgColor;
   export let borderRadius;
   export let aspectRatio;
+  export let files;
 </script>
 
 <style>
@@ -18,6 +19,8 @@
   }
 </style>
 
-<div
-  class="aspect"
-  style="padding-top:{aspectRatio * 100}%; background-color:{playerBgColor}; border-radius:{borderRadius}" />
+
+<input class="aspect"
+  style="padding-top:{aspectRatio * 100}%; background-color:{playerBgColor}; border-radius:{borderRadius}"
+   type="file" accept="video/*"   
+   bind:files />

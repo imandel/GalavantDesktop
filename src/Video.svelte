@@ -1,22 +1,36 @@
 <script>
   import VideoPlayer from "./Video/VideoPlayer.svelte";
   import VideoPlayBar from "./Video/VideoPlayBar.svelte";
-  import { timingObject } from "./time";
+  import Topbar from "./Components/Topbar.svelte";
+  import { timingObject, Videos } from "./time";
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
 
   // Section1 : varibles to control videos
-  let files;
+  let layout;
   let paused = true;
   let reset = false;
+  
+  let minimum_duration = 0;
+
   let timing;
-  $: file_name = files ? files[0].name.split(".")[0] : 0;
-  $: source = files ? URL.createObjectURL(files[0]) : "";
-  
-  
   timingObject.subscribe((value) => {
     timing = value;
   });
+
+  let videos;
+  Videos.subscribe((value) =>{
+    videos = value;
+  });
+
+  function get_duration(){
+    for(let key in videos)
+      if (minimum_duration == 0 || minimum_duration > videos[key])
+        minimum_duration = videos[key];
+  }
+
+
+  $: videos, get_duration();
 
   function time_change() {
     if (timing.readyState === "open") {
@@ -25,16 +39,22 @@
       } else {
         timing.update({ velocity: 1 });
       }
-	  if (reset){
-		  timing.update({ position: 0 });
-		  reset = false;
-	  }
-	  timingObject.set(timing);
+      timingObject.set(timing);
     }
   }
 
-  $: paused, reset, source && time_change();
+  function update_paused(){
+    console.log("?");
+    const { position, velocity } = timing.query();
+    if(velocity == 0)
+      paused = true;
+    else
+      paused = false; 
+  }
 
+  $: timing, update_paused();
+
+  $: paused, reset, minimum_duration && time_change();
 
   //-------------------------------------------------------------------------------------------------------------------
   // REACTIVE CONFIG CONTEXT
@@ -45,22 +65,21 @@
 
   const config = writable({});
   setContext("config", config);
-  export let controlsHeight = '55px';
-  export let trackHeight = '6px';
-  export let thumbSize = '15px';
-  export let centerIconSize = '60px';
-  export let playerBgColor = 'black';
-  export let color = '#F03400';
-  export let focusColor = 'white';
-  export let barsBgColor = 'white';
-  export let iconColor = 'white';
-  export let bufferedColor = '#FF9600';
+  export let controlsHeight = "55px";
+  export let trackHeight = "6px";
+  export let thumbSize = "15px";
+  export let centerIconSize = "60px";
+  export let playerBgColor = "black";
+  export let color = "#fb7299";
+  export let focusColor = "white";
+  export let barsBgColor = "white";
+  export let iconColor = "white";
+  export let bufferedColor = "#fb72996c";
   export let chunkBars = false;
-  export let borderRadius = '8px';
+  export let borderRadius = "8px";
   export let loop = false;
   export let controlsOnPause = true;
   export let timeDisplay = true;
-
 
   $: $config.controlsHeight = controlsHeight;
   $: $config.thumbSize = thumbSize;
@@ -77,47 +96,57 @@
   $: $config.borderRadius = borderRadius;
   $: $config.controlsOnPause = controlsOnPause;
   $: $config.timeDisplay = timeDisplay;
-
 </script>
 
-<div class="topbar">
-  <h1>Multi-modal video analysis toolkit</h1>
-  <input type="file" accept="video/*" bind:files />
-</div>
-
-<div>
-  <button on:click={() => paused = !paused}> </button>
-  <button on:click={() => (paused = true)}>pause</button>
-  <button on:click={() => (paused = false)}>play</button>
-  <button on:click={() => (reset = true)}> reset</button>
-</div>
-
-
-
-<div class="videos">
-  <div class="videos layout1">
-    <VideoPlayer {source}  />
-    <VideoPlayer {source}  />
-    <VideoPlayer {source}  />
+<div class="min-h-screen bg-sky-300 min-w-screen">
+  <Topbar bind:layout />
+  <div class="container bg-sky-300 mx-auto grid grid-cols-6 gap-4">
+    <div class="col-start-2 col-span-4 m-4 grid gap-4">
+      {#if layout == 1}
+        <div class="layout1">
+          <VideoPlayer />
+          <VideoPlayer />
+          <VideoPlayer />
+        </div>
+        <div class="layout2">
+          <VideoPlayer />
+          <VideoPlayer />
+        </div>
+      {:else if layout == 2}
+        <div class="layout1">
+          <VideoPlayer />
+          <VideoPlayer />
+          <VideoPlayer />
+        </div>
+        <div class="layout1">
+          <VideoPlayer />
+          <VideoPlayer />
+          <VideoPlayer />
+        </div>
+      {:else if layout == 3}
+        <div class="layout2">
+          <VideoPlayer />
+          <VideoPlayer />
+        </div>
+        <div class="layout2">
+          <VideoPlayer />
+          <VideoPlayer />
+        </div>
+      {/if}
+      <VideoPlayBar bind:paused={paused} duration={minimum_duration} />
+    </div>
   </div>
-  <div class="videos layout2">
-    <VideoPlayer {source}  />
-    <VideoPlayer {source}  />
-  </div>
 </div>
-
-<VideoPlayBar />
 
 <style>
-  .videos {
+  .layout1 {
     display: grid;
     grid-gap: 1em;
-  }
-  .layout1{
     grid-template-columns: repeat(3, 1fr);
   }
-  .layout2{
+  .layout2 {
+    display: grid;
+    grid-gap: 1em;
     grid-template-columns: repeat(2, 1fr);
   }
-
 </style>
