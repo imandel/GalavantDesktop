@@ -21,7 +21,9 @@
   export let timeDisplay = false;
   export let video_id = 0;
   export let files = "";
+  export let tracksrc = "";
 
+  // $: tracksrc = files ? files[0].name.replace( /\.[^/.]+$/ , "") + ".transcript.vtt" : "";
   $: source = files ? URL.createObjectURL(files[0]) : "";
   $: _width = parseInt(width);
   $: _height = parseInt(height);
@@ -42,7 +44,9 @@
     {aspectRatio}
     {controlsOnPause}
     {timeDisplay} 
-    {video_id}/>
+    {video_id}
+    {tracksrc}
+    />
 
 {:else}
   <VideoPlayerServer {playerBgColor} {borderRadius} {aspectRatio} bind:files={files} />

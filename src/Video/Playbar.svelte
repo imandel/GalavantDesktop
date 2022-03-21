@@ -15,6 +15,7 @@
   export let played = [];
   export let paused;
   export let isScrubbing;
+  export let startTime = 0;
 
   const dispatch = createEventDispatcher();
 
@@ -93,7 +94,7 @@
   function pointerXToCurrentTime(clientX) {
     const value =
       Math.min(Math.max(clientX - rect.x, 0), rect.width) / rect.width;
-    currentTime = duration * value;
+    startTime = duration * value;
   }
 </script>
 

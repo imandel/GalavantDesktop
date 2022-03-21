@@ -53,8 +53,8 @@
   .controls2 {
     position: relative;
     box-sizing: border-box;
-    min-height: 40px;
-    max-height: 150px;
+    min-height: 30px;
+    max-height: 120px;
     padding: 10px;
     display: flex;
     gap: 6px;

@@ -44,12 +44,8 @@
   }
 
   function update_paused(){
-    console.log("?");
-    const { position, velocity } = timing.query();
-    if(velocity == 0)
-      paused = true;
-    else
-      paused = false; 
+    const { velocity } = timing.query();
+    paused = velocity == 0;
   }
 
   $: timing, update_paused();
@@ -65,14 +61,14 @@
 
   const config = writable({});
   setContext("config", config);
-  export let controlsHeight = "55px";
+  export let controlsHeight = "50px";
   export let trackHeight = "6px";
-  export let thumbSize = "15px";
+  export let thumbSize = "10px";
   export let centerIconSize = "60px";
   export let playerBgColor = "black";
   export let color = "#fb7299";
   export let focusColor = "white";
-  export let barsBgColor = "white";
+  export let barsBgColor = "#fb72996c";
   export let iconColor = "white";
   export let bufferedColor = "#fb72996c";
   export let chunkBars = false;

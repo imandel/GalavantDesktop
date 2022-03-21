@@ -41,7 +41,7 @@
     font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace;
     font-size: 1rem;
     line-height: 1rem;
-    color: white;
+    color: "#fb72996c";
   }
 </style>
 

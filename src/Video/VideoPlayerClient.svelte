@@ -42,6 +42,7 @@
   export let controlsOnPause;
   export let timeDisplay;
   export let video_id;
+  export let tracksrc;
   let videoElement;
 
   $: _sources = prepareVideoSources(source);
@@ -60,6 +61,7 @@
   let ended;
   let paused = true;
   let currentTime = 0;
+  let startTime = 0;
   let volume = 1;
   let muteVolume = 1;
   $: muted = volume == 0;
@@ -69,6 +71,13 @@
       currentTime = 0;
       if (loop) videoElement.play();
     }
+  }
+
+  $: startTime, update_start();
+
+  function update_start(){
+    currentTime = startTime;
+    timing.update({position: startTime});
   }
 
 
@@ -122,7 +131,7 @@
   }
 
   function onVideoWaiting(e) {
-    isBuffering = true;
+    isBuffering = false; // just changed for viewing
   }
 
   //-------------------------------------------------------------------------------------------------------------------
@@ -238,6 +247,7 @@
       }
       timingObject.set(timing);
   }
+
   function update_time(){
     setTimingsrc(videoElement, timing);
   }
@@ -297,7 +307,7 @@
           on:waiting={onVideoWaiting}
           preload="none"
         >
-          <track kind="captions" />
+          <track default kind="captions" srclang="en" src={tracksrc}/>
           {#each _sources as { src, type }}
             <source {src} {type} />
           {/each}
@@ -323,6 +333,7 @@
             bind:currentTime
             bind:paused
             bind:isScrubbing
+            bind:startTime
             on:pointerup={onPlaybarPointerUp}
           />
           {#if timeDisplay}
