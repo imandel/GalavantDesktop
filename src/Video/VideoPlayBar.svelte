@@ -6,7 +6,7 @@
   import VolumeControl from "./VolumeControl.svelte";
   import Time from "./Time.svelte";
   import Subtitle from "./Subtitle.svelte";
-  import { timingObject} from "../time";
+  import { timingObject, title} from "../time";
 
   //-------------------------------------------------------------------------------------------------------------------
   // APP STATE FLAGS
@@ -17,8 +17,8 @@
   export let timeDisplay = true;
   export let duration = 0;
   export let startTime = 0;
-  export let title = "";
-  
+  let subtitle = "";
+  $: title.set(subtitle);
 
   let buffered = []; // [{start, end}]
   let played = []; // [{start, end}]
@@ -114,6 +114,6 @@
     {/if}
     <VolumeButton on:pointerup={onVolumeButtonPointerUp} {muted} />
     <VolumeControl bind:volume />
-    <Subtitle bind:title />
+    <Subtitle bind:subtitle />
   </BottomControls>
 </div>

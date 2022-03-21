@@ -42,7 +42,6 @@
   export let controlsOnPause;
   export let timeDisplay;
   export let video_id;
-  export let title;
   let videoElement;
 
   $: _sources = prepareVideoSources(source);
@@ -225,7 +224,7 @@
   }
 
   // TODO: timing src
-  import { timingObject, Videos } from "../time";
+  import { timingObject, Videos, title } from "../time";
   import { setTimingsrc } from "timingsrc";
   let timing;
   timingObject.subscribe((value) => {
@@ -233,8 +232,6 @@
   });
 
   $: timing, source && videoElement && update_time();
-
-
   $: paused, update_paused();
 
   function update_paused(){
@@ -263,6 +260,11 @@
   $: source, duration && update_video();
 
 
+  // TODO: Get subtitles
+  let subtitle;
+  title.subscribe((value) =>{
+    subtitle = value;
+  });
 
 </script>
 
@@ -311,7 +313,7 @@
             <source {src} {type} />
           {/each}
           <track kind="captions" />
-          <track kind="subtitles" srclang="en" src={title} default>
+          <track kind="subtitles" srclang="en" src={subtitle} default>
           <p>Sorry, your browser doesn't support HTML5 videos.</p>
         </video>
       {/if}

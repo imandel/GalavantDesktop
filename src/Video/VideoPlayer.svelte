@@ -21,8 +21,6 @@
   export let timeDisplay = false;
   export let video_id = 0;
   export let files = "";
-  export let tracksrc = "";
-  export let title = "";
 
   $: source = files ? URL.createObjectURL(files[0]) : "";
   $: _width = parseInt(width);
@@ -45,7 +43,6 @@
     {controlsOnPause}
     {timeDisplay} 
     {video_id}
-    {title}
     />
 
 {:else}

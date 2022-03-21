@@ -51,7 +51,6 @@
   }
 
   $: timing, update_paused();
-
   $: paused, reset, minimum_duration && time_change();
   
   //-------------------------------------------------------------------------------------------------------------------
@@ -102,13 +101,13 @@
     <div class="col-start-2 col-span-4 m-4 grid gap-4">
       {#if layout == 1}
         <div class="layout1">
-          <VideoPlayer {title} />
-          <VideoPlayer {title}/>
-          <VideoPlayer {title}/>
+          <VideoPlayer />
+          <VideoPlayer />
+          <VideoPlayer />
         </div>
         <div class="layout2">
-          <VideoPlayer {title}/>
-          <VideoPlayer {title}/>
+          <VideoPlayer />
+          <VideoPlayer />
         </div>
       {:else if layout == 2}
         <div class="layout1">
@@ -131,7 +130,7 @@
           <VideoPlayer />
         </div>
       {/if}
-      <VideoPlayBar bind:paused duration={minimum_duration} bind:title/>
+      <VideoPlayBar bind:paused duration={minimum_duration} />
     </div>
   </div>
 </div>

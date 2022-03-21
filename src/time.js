@@ -6,3 +6,6 @@ export const timingObject = writable(now);
 
 // key: source value: duration
 export const Videos = writable({});
+
+// subtitles
+export const title = writable("");
