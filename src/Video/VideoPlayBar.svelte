@@ -17,8 +17,8 @@
   export let timeDisplay = true;
   export let duration = 0;
   export let startTime = 0;
-  let subtitle = "";
-  $: title.set(subtitle);
+  let sub = "";
+  $: title.set(sub);
 
   let buffered = []; // [{start, end}]
   let played = []; // [{start, end}]
@@ -114,6 +114,6 @@
     {/if}
     <VolumeButton on:pointerup={onVolumeButtonPointerUp} {muted} />
     <VolumeControl bind:volume />
-    <Subtitle bind:subtitle />
+    <Subtitle bind:sub />
   </BottomControls>
 </div>

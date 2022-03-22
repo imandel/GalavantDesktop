@@ -2,10 +2,10 @@
   import { getContext } from "svelte";
   import Button from "./Button.svelte";
 
-  export let subtitle;
+  export let sub;
   let fileinput;
   let files;
-  $: subtitle = files ? URL.createObjectURL(files[0]) : "";
+  $: sub = files ? URL.createObjectURL(files[0]) : "";
 
   const cfg = getContext("config");
 </script>

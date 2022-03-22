@@ -5,14 +5,11 @@
   import { timingObject, Videos } from "./time";
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
+  import SubTitleBox from "./Video/SubTitleBox.svelte";
 
   // Section1 : varibles to control videos
   let layout;
   let paused = true;
-  let reset = false;
-  let title = "";
-  let subtitle_data;
-  
   let minimum_duration = 0;
 
   let timing;
@@ -51,7 +48,7 @@
   }
 
   $: timing, update_paused();
-  $: paused, reset, minimum_duration && time_change();
+  $: paused, minimum_duration && time_change();
   
   //-------------------------------------------------------------------------------------------------------------------
   // REACTIVE CONFIG CONTEXT
@@ -66,7 +63,7 @@
   export let trackHeight = "6px";
   export let thumbSize = "10px";
   export let centerIconSize = "60px";
-  export let playerBgColor = "black";
+  export let playerBgColor =  '#fb7299';
   export let color = "#fb7299";
   export let focusColor = "white";
   export let barsBgColor = "#fb72996c";
@@ -95,10 +92,10 @@
   $: $config.timeDisplay = timeDisplay;
 </script>
 
-<div class="min-h-screen bg-sky-300 min-w-screen">
+<div>
   <Topbar bind:layout />
-  <div class="container bg-sky-300 mx-auto grid grid-cols-6 gap-4">
-    <div class="col-start-2 col-span-4 m-4 grid gap-4">
+  <div class="grid grid-cols-8 grid-flow-row gap-4 mt-4">
+    <div class="col-start-2 col-span-4 grid gap-4 ">
       {#if layout == 1}
         <div class="layout1">
           <VideoPlayer />
@@ -132,6 +129,10 @@
       {/if}
       <VideoPlayBar bind:paused duration={minimum_duration} />
     </div>
+    <div class="col-start-6 col-span-2 row-span-2 grid gap-4 h-56">
+      <SubTitleBox />
+    </div>
+    
   </div>
 </div>
 
