@@ -2,13 +2,15 @@
   import { title } from "../time";
   import { ASS } from "./parsers/ASS";
   import { SubRip } from "./parsers/SubRip";
-  import { onMount, onDestroy } from "svelte";
+  import Subtitle from "./Subtitle.svelte";
+  import SliderSubtitle from "./SliderSubtitle.svelte";
+
   let subtitle;
   let parsedSubtitles;
+  $: console.log(parsedSubtitles);
   let fileName = "sub";
   let playerBgColor = "#fb7299";
   let borderRadius = "8px";
-  let insideColor = "#fb72996c";
 
   title.subscribe((value) => {
     subtitle = value;
@@ -41,17 +43,27 @@
     );
     reader.readAsText(blob);
   }
+
+  // Section 2: Update position to current time
+
+  let scrollbar;
+  let ele;
+
+  $:scrollbar, scrollbar && console.log(scrollbar.scrollTop);
+  $: ele && console.log(ele.scrollTop);
+
+	$: scrollbar && ele && scrollbar.scrollTo(0, ele.offsetHeight);
+	
+  
 </script>
 
-<div
-  class="overflow-y-auto grid grid-cols-1 grid-flow-row gap-4 place-content-center"
-  style="background-color:{playerBgColor}; border-radius:{borderRadius}"
->
-  {#if parsedSubtitles}
-    {#each parsedSubtitles.subs as subtitle}
-      <p class="z-auto text-slate-500 hover:text-blue-600">
-        {subtitle.text}
-      </p>
-    {/each}
-  {/if}
+
+
+<div class="relative" 
+style="background-color:{playerBgColor}; border-radius:{borderRadius}; padding:0.5em;">
+  <div class="top-0 left-0">
+    <Subtitle />  
+  </div>
+  <SliderSubtitle {parsedSubtitles} />
 </div>
+

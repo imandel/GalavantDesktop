@@ -17,8 +17,6 @@
   export let timeDisplay = true;
   export let duration = 0;
   export let startTime = 0;
-  let sub = "";
-  $: title.set(sub);
 
   let buffered = []; // [{start, end}]
   let played = []; // [{start, end}]
@@ -60,6 +58,7 @@
   function update_current(){
     const { position } = timing.query();
     currentTime = position;
+    console.log(currentTime);
   }
 
   $: timing , update_current();
@@ -114,6 +113,6 @@
     {/if}
     <VolumeButton on:pointerup={onVolumeButtonPointerUp} {muted} />
     <VolumeControl bind:volume />
-    <Subtitle bind:sub />
+    <Subtitle />
   </BottomControls>
 </div>

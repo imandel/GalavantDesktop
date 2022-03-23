@@ -38,6 +38,8 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "@tsconfig/svelte": "^2.0.0",
     "autoprefixer": "^9.8.8",
     "concurrently": "^6.5.1",
     "cross-env": "^7.0.3",
@@ -52,13 +54,12 @@
     "rollup-plugin-terser": "^7.0.2",
     "sirv-cli": "^1.0.12",
     "svelte": "^3.42.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
-    "wait-on": "^6.0.0",
     "svelte-check": "^2.0.0",
     "svelte-preprocess": "^4.0.0",
-    "@rollup/plugin-typescript": "^8.0.0",
-    "typescript": "^4.0.0",
+    "svelte-scrollto": "^0.2.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "tslib": "^2.0.0",
-    "@tsconfig/svelte": "^2.0.0"
+    "typescript": "^4.0.0",
+    "wait-on": "^6.0.0"
   }
 }

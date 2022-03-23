@@ -1,11 +1,13 @@
 <script>
   import { getContext } from "svelte";
   import Button from "./Button.svelte";
+  import { title } from "../time";
 
-  export let sub;
+  let sub;
   let fileinput;
   let files;
   $: sub = files ? URL.createObjectURL(files[0]) : "";
+  $: title.set(sub);
 
   const cfg = getContext("config");
 </script>

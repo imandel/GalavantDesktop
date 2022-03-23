@@ -129,7 +129,7 @@
       {/if}
       <VideoPlayBar bind:paused duration={minimum_duration} />
     </div>
-    <div class="col-start-6 col-span-2 row-span-2 grid gap-4 h-56">
+    <div class="col-start-6 col-span-2 row-span-2 grid gap-4 h-80">
       <SubTitleBox />
     </div>
     
