@@ -2,7 +2,7 @@
 
 # Development Installation
 
-i think `code go here` is better than `code go there`
+
 
 - clone this repo:  `git clone https://github.com/imandel/GalavantDesktop.git`
 
@@ -11,9 +11,9 @@ i think `code go here` is better than `code go there`
 - to launch run: `npm run electron-dev`
 
 
-### bye
+<!-- ### bye
 
-*asj* __fdas__ 
+*asj* __fdas__  -->
 
 
 <!-- <div align="center">
